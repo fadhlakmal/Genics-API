@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - '4500:4500'
+    environment:
+      - MONGO_DB=mongodb://mongodb:27017/mydatabase
+      - PORT=4500
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb-data:/data/db
+volumes:
+  mongodb-data:
+  mongodb-test-data:
